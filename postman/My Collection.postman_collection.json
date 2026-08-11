@@ -13,7 +13,16 @@
       "item": [
         {
           "name": "Auth",
-          "item": []
+          "item": [
+            {
+              "name": "Login",
+              "request": {
+                "method": "GET",
+                "header": []
+              },
+              "response": []
+            }
+          ]
         },
         {
           "name": "Customers",
@@ -29,7 +38,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -70,7 +79,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -117,7 +126,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -156,7 +165,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -196,7 +205,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -205,7 +214,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"name\": \"Rahul Traders\",\r\n  \"mobile\": \"9876543210\",\r\n  \"email\": \"rahul@example.com\",\r\n  \"business_name\": \"Rahul Wholesale\",\r\n  \"gst_number\": \"24AAAAA0000A1Z5\",\r\n  \"customer_type\": \"wholesale\",\r\n  \"address\": \"123 Market Road, Ahmedabad\",\r\n  \"status\": \"lead\",\r\n  \"follow_up_date\": \"2026-08-20\"\r\n}",
+                  "raw": "{\r\n  \"name\": \"Rahul \",\r\n  \"mobile\": \"9876543210\",\r\n  \"email\": \"rahul@example.com\",\r\n  \"business_name\": \"Rahul Wholesale\",\r\n  \"gst_number\": \"24AAAAA0000A1Z5\",\r\n  \"customer_type\": \"wholesale\",\r\n  \"address\": \"123 Market Road, Ahmedabad\",\r\n  \"status\": \"lead\",\r\n  \"follow_up_date\": \"2026-08-20\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -234,7 +243,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -278,7 +287,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -358,7 +367,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -399,7 +408,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -443,7 +452,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -483,7 +492,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -526,7 +535,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -575,7 +584,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -633,7 +642,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -662,7 +671,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "{{JWT-Token}}",
+                      "value": "{{token}}",
                       "type": "string"
                     }
                   ]
@@ -760,7 +769,7 @@
         "bearer": [
           {
             "key": "token",
-            "value": "{{JWT_Token}}",
+            "value": "{{token}}",
             "type": "string"
           }
         ]
