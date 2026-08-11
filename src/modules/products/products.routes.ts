@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { authMiddleware } from "../../middleware/auth";
+import { requireRole } from "../../middleware/requireRole";
 import {
   getProducts,
   getProductById,
@@ -14,8 +15,8 @@ router.use(authMiddleware);
 
 router.get("/", getProducts);
 router.get("/:id", getProductById);
-router.post("/", createProduct);
-router.put("/:id", updateProduct);
-router.post("/:id/stock", adjustStock);
+router.post("/", requireRole(["admin", "warehouse"]), createProduct);
+router.put("/:id", requireRole(["admin", "warehouse"]), updateProduct);
+router.post("/:id/stock", requireRole(["admin", "warehouse"]), adjustStock);
 
 export default router;
