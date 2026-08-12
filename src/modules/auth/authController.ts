@@ -18,6 +18,11 @@ export async function login(req: Request, res: Response) {
     const match = await bcrypt.compare(password, user.password_hash);
     if (!match) return res.status(401).json({ error: "Invalid credentials" });
 
+    console.error(
+      "SIGNING with JWT_SECRET length:",
+      process.env.JWT_SECRET?.length,
+    ); // TEMP debug log
+
     const token = jwt.sign(
       { userId: user.id, role: user.role },
       process.env.JWT_SECRET as string,
