@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authMiddleware } from "../../middleware/auth";
 import { requireRole } from "../../middleware/requireRole";
+import { downloadChallanPdf } from "./challans.controller";
 import {
   createChallan,
   getChallans,
@@ -15,6 +16,7 @@ router.use(authMiddleware);
 
 router.post("/", requireRole(["admin", "sales"]), createChallan);
 router.get("/", getChallans);
+router.get("/:id/pdf", downloadChallanPdf);
 router.get("/:id", getChallanById);
 router.post("/:id/confirm", requireRole(["admin", "sales"]), confirmChallan);
 router.post("/:id/cancel", requireRole(["admin", "sales"]), cancelChallan);

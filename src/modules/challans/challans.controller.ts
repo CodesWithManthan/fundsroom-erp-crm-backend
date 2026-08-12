@@ -1,6 +1,7 @@
 import { Response } from "express";
 import { pool } from "../../config/db";
 import { AuthRequest } from "../../middleware/auth";
+import { generateChallanPdf } from "./challan-pdf";
 
 // Helper: generate next challan number
 async function generateChallanNumber(client: any): Promise<string> {
@@ -237,6 +238,43 @@ export async function cancelChallan(req: AuthRequest, res: Response) {
         .json({ error: "Only draft challans can be cancelled" });
     }
     res.json({ challan: result.rows[0] });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+}
+
+// GET /challans/:id/pdf - download challan as PDF
+export async function downloadChallanPdf(req: AuthRequest, res: Response) {
+  try {
+    const { id } = req.params;
+    const challanResult = await pool.query(
+      `SELECT c.*, cu.name as customer_name FROM challans c
+       JOIN customers cu ON c.customer_id = cu.id
+       WHERE c.id = $1`,
+      [id],
+    );
+    if (challanResult.rows.length === 0) {
+      return res.status(404).json({ error: "Challan not found" });
+    }
+
+    const itemsResult = await pool.query(
+      "SELECT * FROM challan_items WHERE challan_id = $1",
+      [id],
+    );
+
+    const challan = challanResult.rows[0];
+    generateChallanPdf(
+      {
+        challan_number: challan.challan_number,
+        customer_name: challan.customer_name,
+        status: challan.status,
+        created_at: challan.created_at,
+        confirmed_at: challan.confirmed_at,
+        total_quantity: challan.total_quantity,
+        items: itemsResult.rows,
+      },
+      res,
+    );
   } catch (err) {
     res.status(500).json({ error: "Server error" });
   }
