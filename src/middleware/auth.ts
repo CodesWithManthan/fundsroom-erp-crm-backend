@@ -28,4 +28,20 @@ export function authMiddleware(
     console.error("JWT_SECRET length:", process.env.JWT_SECRET?.length); // TEMP debug log
     return res.status(401).json({ error: "Invalid or expired token" });
   }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
+      userId: number;
+      role: string;
+    };
+    req.user = decoded;
+    next();
+  } catch (err) {
+    console.error(
+      "VERIFY - JWT_SECRET raw:",
+      JSON.stringify(process.env.JWT_SECRET),
+    );
+    console.error("VERIFY - error:", err);
+    return res.status(401).json({ error: "Invalid or expired token" });
+  }
 }
