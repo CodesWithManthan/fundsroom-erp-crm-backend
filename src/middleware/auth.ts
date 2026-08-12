@@ -22,7 +22,10 @@ export function authMiddleware(
     };
     req.user = decoded;
     next();
-  } catch {
+  } catch (err) {
+    console.error("JWT verify failed:", err); // TEMP debug log
+    console.error("Token received:", token); // TEMP debug log
+    console.error("JWT_SECRET length:", process.env.JWT_SECRET?.length); // TEMP debug log
     return res.status(401).json({ error: "Invalid or expired token" });
   }
 }
