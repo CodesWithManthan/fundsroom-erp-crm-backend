@@ -23,11 +23,6 @@ export async function login(req: Request, res: Response) {
       process.env.JWT_SECRET?.length,
     ); // TEMP debug log
 
-    console.error(
-      "SIGN - JWT_SECRET raw:",
-      JSON.stringify(process.env.JWT_SECRET),
-    );
-
     const token = jwt.sign(
       { userId: user.id, role: user.role },
       process.env.JWT_SECRET as string,
